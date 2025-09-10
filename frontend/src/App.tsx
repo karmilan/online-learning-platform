@@ -1,15 +1,15 @@
+import { Route, Routes } from "react-router";
+import NavBar from "./layouts/NavBar";
+import Login from "./pages/Login";
+
 function App() {
   return (
-    <>
-      <main className="relative bg-gradient-to-r from-emerald-900 to-emerald-700 text-white">
-        <h1 className="text-3xl font-bold tracking-tight">
-          🚀 React + Vite + Tailwind Starter
-        </h1>
-        <p className="mt-2 text-gray-600">
-          Clean and professional frontend setup ready to build.
-        </p>
-      </main>
-    </>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <NavBar />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </div>
   );
 }
 
