@@ -2,7 +2,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./lib/db.js";
+import authRoutes from "./routes/auth.route.js";
 import courseRoutes from "./routes/courses.route.js";
+import enrollmentRoutes from "./routes/enrollments.route.js";
 import userRoutes from "./routes/users.route.js";
 
 dotenv.config();
@@ -26,6 +28,8 @@ app.get("/", (req, res) => {
 // CRUD functionalities
 app.use("/api/v1", courseRoutes);
 app.use("/api/v1", userRoutes);
+app.use("/api/v1", enrollmentRoutes);
+app.use("/api/v1", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`The server is running at PORT:${PORT}`);
