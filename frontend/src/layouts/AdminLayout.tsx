@@ -107,12 +107,8 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
               </button>
             </div>
           </header>
-          {/* Main content will be rendered below */}
-          {children}
         </div>
       </div>
-
-      {/* <div>{children}</div> */}
     </>
   );
 };
