@@ -3,6 +3,7 @@ import PublicLayout from "./layouts/PublicLayout ";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Courses from "./pages/student/courses";
 
 function App() {
   return (
@@ -29,6 +30,14 @@ function App() {
           element={
             <PublicLayout>
               <Register />
+            </PublicLayout>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <PublicLayout>
+              <Courses />
             </PublicLayout>
           }
         />

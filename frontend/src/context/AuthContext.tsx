@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.log("tokenVal", response.data.user.role);
 
       if (response.data.user.role === "student") {
-        navigate("/");
+        navigate("/courses");
       } else {
         navigate("/login");
       }
