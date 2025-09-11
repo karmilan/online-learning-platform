@@ -40,7 +40,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.log("tokenVal", tokenVal);
       console.log("tokenVal", response.data.user.role);
 
-      navigate("/");
+      if (response.data.user.role === "student") {
+        navigate("/");
+      } else {
+        navigate("/login");
+      }
 
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("role", JSON.stringify(response.data.user.role));
