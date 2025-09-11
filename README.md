@@ -53,3 +53,12 @@ A web-based platform for online courses and student management.
    cd backend / frontend
    npm run dev
    ```
+
+---
+
+## 🔐 Demo Admin Login
+
+Use the following credentials to access the admin panel for testing purposes:
+
+**Email:** admin@example.com  
+**Password:** Admin@123
