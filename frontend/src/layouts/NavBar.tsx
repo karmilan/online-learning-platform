@@ -12,12 +12,13 @@ const NavBar = () => {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
   const token = authContext?.token;
+  const role = authContext?.role;
   const currentToken = token || localStorage.getItem("token");
 
   const logout = () => {
     authContext?.logout();
-    window.location.reload();
     navigate("/");
+    window.location.reload();
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);

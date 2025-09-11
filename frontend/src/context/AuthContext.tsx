@@ -42,8 +42,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (response.data.user.role === "student") {
         navigate("/courses");
+      } else if (response.data.user.role === "admin") {
+        navigate("/admin/courses");
       } else {
-        navigate("/login");
+        navigate("/");
       }
 
       localStorage.setItem("user", JSON.stringify(response.data.user));

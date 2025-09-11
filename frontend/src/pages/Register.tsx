@@ -28,8 +28,6 @@ const Register = () => {
       navigate("/login");
     } catch (error) {
       console.log(error);
-
-      // setError("Error registering user. Please try again.");
     }
   };
   return (

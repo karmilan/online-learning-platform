@@ -1,22 +1,35 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
-import courseService from "../../services/CourseService";
+import enrollmentService from "../../services/EnrollmentService";
 
-const Courses = () => {
+const Enrolls = () => {
   const authContext = useContext(AuthContext);
   const token = authContext?.token;
+  const user = authContext?.user;
   const currentToken = token || localStorage.getItem("token");
+  const currentUser = user || JSON.parse(localStorage.getItem("user") || "{}");
 
   const [courses, setCourses] = useState([]);
+  const [status, setStatus] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchEnrollments = async () => {
       try {
-        console.log("token>>>>", currentToken);
-        const response = await courseService.getAllCourses(currentToken ?? "");
+        const response = await enrollmentService.getAllEnrollmentsByUserId(
+          currentUser._id,
+          currentToken ?? ""
+        );
+        const courseData = response.map(
+          (enrollment: { course: [] }) => enrollment.course
+        );
+
+        const status = response.map(
+          (enrollment: { status: string }) => enrollment.status
+        );
 
         setCourses(response);
+        setStatus(status);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -26,7 +39,7 @@ const Courses = () => {
       }
     };
 
-    fetchCourses();
+    fetchEnrollments();
   }, []);
   console.log("course>>>>", courses);
 
@@ -48,16 +61,24 @@ const Courses = () => {
                 key={course.id}
                 className="bg-white shadow rounded-lg p-6 flex flex-col"
               >
-                <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
-                <p className="text-gray-700 mb-4">{course.description}</p>
-                <p className="text-gray-700 mb-4">{course.duration} hr</p>
+                <h3 className="text-lg font-semibold mb-2">
+                  {course.course.title}
+                </h3>
+                <p className="text-gray-700 mb-4">
+                  {course.course.description}
+                </p>
+                <p className="text-gray-700 mb-4">
+                  {course.course.duration} hr
+                </p>
+                <p className="text-gray-700 mb-4">{course.status}</p>
               </div>
             ))
           )}
+          {/* <p className="text-gray-500">{status}</p> */}
         </div>
       </div>
     </>
   );
 };
 
-export default Courses;
+export default Enrolls;

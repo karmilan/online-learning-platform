@@ -12,6 +12,21 @@ export const getAllEnrollments = async (req, res) => {
   }
 };
 
+// get all enrollments by user id
+export const getEnrollmentsByUserId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    console.log("enrollments", id);
+    const enrollments = await Enrollment.find({ user: id })
+      .populate("user")
+      .populate("course");
+    return res.status(200).json(enrollments);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 // create a new enrollment
 export const createEnrollment = async (req, res) => {
   const { userId, courseId, status } = req.body;

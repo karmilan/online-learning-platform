@@ -1,9 +1,12 @@
 import { Route, Routes } from "react-router";
+import AdminLayout from "./layouts/AdminLayout";
 import PublicLayout from "./layouts/PublicLayout ";
+import AdminCourses from "./pages/admin/AdminCourses";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Courses from "./pages/student/courses";
+import Enrolls from "./pages/student/Enrolls";
 
 function App() {
   return (
@@ -39,6 +42,24 @@ function App() {
             <PublicLayout>
               <Courses />
             </PublicLayout>
+          }
+        />
+
+        <Route
+          path="/enrolls"
+          element={
+            <PublicLayout>
+              <Enrolls />
+            </PublicLayout>
+          }
+        />
+
+        <Route
+          path="/admin/courses"
+          element={
+            <AdminLayout>
+              <AdminCourses />
+            </AdminLayout>
           }
         />
       </Routes>
