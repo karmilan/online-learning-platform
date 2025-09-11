@@ -2,14 +2,18 @@ import { BookOpen, Calendar, Clock } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import courseService from "../../services/CourseService";
+import enrollmentService from "../../services/EnrollmentService";
 
 const Courses = () => {
   const authContext = useContext(AuthContext);
   const token = authContext?.token;
+  const userId = authContext?.user?._id;
   const currentToken = token || localStorage.getItem("token");
+  const currentUserId = userId || localStorage.getItem("userId");
 
   const [courses, setCourses] = useState([]);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -30,6 +34,24 @@ const Courses = () => {
     fetchCourses();
   }, []);
   console.log("course>>>>", courses);
+
+  const handleEnroll = async (
+    event: React.MouseEvent<HTMLButtonElement>,
+    courseId: string
+  ) => {
+    event.preventDefault();
+    console.log("courseId, userId>>", courseId, userId);
+
+    const newEnrollment = { userId, courseId };
+
+    try {
+      await enrollmentService.addEnrollment(newEnrollment, currentToken ?? "");
+      setSuccess("Enrolled successful!");
+    } catch (err) {
+      setSuccess("");
+      setError(err instanceof Error ? err.message : "Failed to enroll.");
+    }
+  };
 
   return (
     <>
@@ -63,17 +85,14 @@ const Courses = () => {
               >
                 {/* Gradient accent bar */}
                 <div className="absolute top-0 left-0 w-full h-1 rounded-t-3xl bg-gradient-to-r from-indigo-500 to-purple-500" />
-
                 {/* Title */}
                 <h3 className="text-xl font-semibold mb-3 text-gray-900 group-hover:text-indigo-600 transition-colors">
                   {course.title}
                 </h3>
-
                 {/* Description */}
                 <p className="text-gray-600 mb-6 line-clamp-4 text-sm leading-relaxed">
                   {course.description}
                 </p>
-
                 {/* Info */}
                 <div className="mt-auto flex flex-col gap-3 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
@@ -94,11 +113,18 @@ const Courses = () => {
                     </span>
                   </div>
                 </div>
-
                 {/* Enroll Button */}
-                <button className="mt-6 inline-flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">
+                <button
+                  className="mt-6 inline-flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition"
+                  onClick={(e) => handleEnroll(e, course._id)}
+                >
                   Enroll
                 </button>
+                {/* {success && (
+                  <div className="mt-4 rounded-md bg-green-50 border border-green-200 p-3 text-green-700 text-sm">
+                    {success}
+                  </div>
+                )} */}
               </div>
             ))
           )}
