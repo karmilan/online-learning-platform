@@ -8,8 +8,8 @@ const AdminSideBar = ({ sidebarOpen, setSidebarOpen }: AdminPSideBarProps) => {
   return (
     <>
       {/* Sidebar for desktop */}
-      <aside className="hidden md:flex flex-col w-64 bg-white/80 backdrop-blur-md border-r border-gray-200/50 p-4">
-        <div className="mb-8 text-2xl font-bold">Admin Panel</div>
+      <aside className="hidden md:flex flex-col w-45 bg-white/80 backdrop-blur-md border-r border-gray-200/50 p-4">
+        <div className="mb-8 text-xl font-bold">Admin Panel</div>
         <nav className="flex flex-col gap-4">
           <Link
             to="/admin/enrolls"

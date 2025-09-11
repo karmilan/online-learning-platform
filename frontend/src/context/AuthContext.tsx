@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (response.data.user.role === "student") {
         navigate("/courses");
       } else if (response.data.user.role === "admin") {
-        navigate("/admin/courses");
+        navigate("/admin/enrolls");
       } else {
         navigate("/");
       }
