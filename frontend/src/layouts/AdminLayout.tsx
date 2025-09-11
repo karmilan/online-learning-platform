@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import AuthContext from "../context/AuthContext";
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+
+  const logout = () => {
+    auth?.logout();
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -92,7 +102,9 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
             <div className="text-xl font-semibold">Admin Dashboard</div>
             <div>
-              <span className="text-gray-600">Admin</span>
+              <button className="text-gray-600" onClick={logout}>
+                Log Out
+              </button>
             </div>
           </header>
           {/* Main content will be rendered below */}
