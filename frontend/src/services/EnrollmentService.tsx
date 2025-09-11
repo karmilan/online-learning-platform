@@ -25,13 +25,13 @@ const enrollmentService = {
     return response.data;
   },
 
-  addCourse: async (courseData: unknown, token: string) => {
-    console.log(courseData);
+  addEnrollment: async (enrollmentData: unknown, token: string) => {
+    console.log(enrollmentData);
 
     const tokenVal = token.replace(/"/g, "");
     console.log("tokenVal", tokenVal);
 
-    const response = await api.post("/courses", courseData, {
+    const response = await api.post("/enrollments", enrollmentData, {
       headers: {
         Authorization: `Bearer ${tokenVal}`,
       },
@@ -41,18 +41,22 @@ const enrollmentService = {
     // return response.data;
   },
 
-  updateCourse: async (id: string, courseData: unknown, token: string) => {
+  updateEnrollment: async (
+    id: string,
+    enrollmentData: unknown,
+    token: string
+  ) => {
     const tokenVal = token.replace(/"/g, "");
-    const response = await api.put(`/courses/${id}`, courseData, {
+    const response = await api.put(`/enrollments/${id}`, enrollmentData, {
       headers: { Authorization: `Bearer ${tokenVal}` },
     });
     console.log("response>>>", response);
     return response.data;
   },
 
-  deleteCourse: async (id: string, token: string) => {
+  deleteEnrollment: async (id: string, token: string) => {
     const tokenVal = token.replace(/"/g, "");
-    const response = await api.delete(`/courses/${id}`, {
+    const response = await api.delete(`/enrollments/${id}`, {
       headers: { Authorization: `Bearer ${tokenVal}` },
     });
     return response.data;

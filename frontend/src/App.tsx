@@ -2,10 +2,12 @@ import { Route, Routes } from "react-router";
 import AdminLayout from "./layouts/AdminLayout";
 import PublicLayout from "./layouts/PublicLayout ";
 import AdminCourses from "./pages/admin/AdminCourses";
+import AdminEnrolls from "./pages/admin/AdminEnrolls";
+import AdminUsers from "./pages/admin/AdminUsers";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Courses from "./pages/student/courses";
+import Courses from "./pages/student/Courses";
 import Enrolls from "./pages/student/Enrolls";
 
 function App() {
@@ -59,6 +61,24 @@ function App() {
           element={
             <AdminLayout>
               <AdminCourses />
+            </AdminLayout>
+          }
+        />
+
+        <Route
+          path="/admin/enrolls"
+          element={
+            <AdminLayout>
+              <AdminEnrolls />
+            </AdminLayout>
+          }
+        />
+
+        <Route
+          path="/admin/users"
+          element={
+            <AdminLayout>
+              <AdminUsers />
             </AdminLayout>
           }
         />

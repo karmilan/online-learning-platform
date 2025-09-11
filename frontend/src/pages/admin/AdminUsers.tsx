@@ -1,4 +1,4 @@
-const AdminCourses = () => {
+const AdminUsers = () => {
   return (
     <>
       <div className="container mx-auto px-4 py-8">ggh</div>
@@ -6,4 +6,4 @@ const AdminCourses = () => {
   );
 };
 
-export default AdminCourses;
+export default AdminUsers;
