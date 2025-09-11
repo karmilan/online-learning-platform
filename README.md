@@ -22,10 +22,10 @@ A web-based platform for online courses and student management.
 
 ### 🔹 Frontend
 
-- **React (with Vite)** → Blazing fast development experience with React’s component-based architecture and Vite’s optimized bundling.
-- **React Router v6** → Handles multi-role navigation (students vs. admins).
+- **React** → Fast development experience with React’s component-based architecture.
+- **React Router** → Handles multi-role navigation (students vs. admins).
 - **Tailwind CSS** → Utility-first CSS for clean, responsive, and consistent UI styling.
-- **Context API (AuthContext)** → Manages authentication state across the app.
+- **Context API** → Manages authentication state across the app.
 
 ---
 
