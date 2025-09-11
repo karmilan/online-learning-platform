@@ -61,4 +61,4 @@ A web-based platform for online courses and student management.
 Use the following credentials to access the admin panel for testing purposes:
 
 **Email:** admin@example.com  
-**Password:** Admin@123
+**Password:** admin
